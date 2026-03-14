@@ -1,0 +1,27 @@
+# Executables
+*.exe
+
+# Object files
+*.o
+*.obj
+
+# Build folders
+build/
+bin/
+Debug/
+Release/
+
+# Visual Studio
+*.sln
+*.vcxproj
+*.vcxproj.user
+.vs/
+
+# VSCode
+.vscode/
+
+# Libraries
+lib/
+
+# Logs
+*.log
