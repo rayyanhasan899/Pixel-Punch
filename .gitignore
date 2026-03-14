@@ -10,7 +10,10 @@ build/
 bin/
 Debug/
 Release/
+External/
 *.dll
+*.filters
+*.user
 
 # Visual Studio
 *.sln
