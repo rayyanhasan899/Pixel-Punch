@@ -10,6 +10,7 @@ build/
 bin/
 Debug/
 Release/
+*.dll
 
 # Visual Studio
 *.sln
