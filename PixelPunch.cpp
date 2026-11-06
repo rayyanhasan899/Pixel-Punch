@@ -1,3 +1,4 @@
+#include <cstdlib>
 #include <SFML/Graphics.hpp>
 #include <SFML/Window.hpp>
 #include <iostream>
@@ -240,11 +241,19 @@ int main() {
     RenderWindow window(VideoMode(window_Width, window_Height), "SFML Fighting Game");
 
     Texture backgroundTexture;
-    backgroundTexture.loadFromFile("assets/Background.jpg");
+    if (!backgroundTexture.loadFromFile("assets/Background.jpg")) {
+        std::cerr << "Run from the repository root so assets/Background.jpg is available.\n";
+        return 1;
+    }
     Sprite background(backgroundTexture);
 
     Font font;
-    font.loadFromFile("C:/Windows/Fonts/arial.ttf");
+    const char* configuredFont = std::getenv("PIXEL_PUNCH_FONT");
+    const std::string fontPath = configuredFont ? configuredFont : "C:/Windows/Fonts/arial.ttf";
+    if (!font.loadFromFile(fontPath)) {
+        std::cerr << "Unable to load font. Set PIXEL_PUNCH_FONT to a readable font file.\n";
+        return 1;
+    }
 
     Fighter player1(PLAYER1NAME, 100);
     Fighter player2(PLAYER2NAME, 400);
