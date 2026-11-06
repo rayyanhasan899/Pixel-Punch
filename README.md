@@ -2,6 +2,12 @@
 
 A local two-player fighting game written in C++ with SFML. Animated fighters move, jump, and punch in an arena; hitboxes determine damage and health bars track the match.
 
+## Demonstration
+
+![Pixel Punch match with two fighters, health bars and timer](docs/images/demo.png)
+
+A cropped frame from the owner's existing recording, published with the owner's confirmed permission. It shows the earlier local game interface, not a fresh controller/gameplay test of this revision. [Frame provenance](docs/DEMONSTRATION.md).
+
 ## Implemented features
 
 - Menu and instructions screens.
