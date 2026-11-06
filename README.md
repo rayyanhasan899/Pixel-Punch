@@ -1,68 +1,49 @@
-# Pixel Punch – 2D Fighting Game (SFML)
+# Pixel Punch
 
-Pixel Punch is a 2D fighting game developed in C++ using the SFML graphics library.
+A local two-player fighting game written in C++ with SFML. Animated fighters move, jump, and punch in an arena; hitboxes determine damage and health bars track the match.
 
-The game features two fighters battling in a 2D arena with animations, collision detection, and health systems.
+## Implemented features
 
----
-
-## Features
-
-- Two playable characters (Maaz and Nimr)
-- Walking, punching and idle animations
-- Health bar system
-- 180-second match timer
-- Collision detection with hitboxes
-- Jump mechanics
-- Game win / lose conditions
-- Debug collision rectangles
-
----
-
-## Technologies Used
-
-- C++
-- SFML (Simple and Fast Multimedia Library)
-- Object-Oriented Programming
-
----
+- Menu and instructions screens.
+- Walking, idle, and punching animation states.
+- Punch/hurt-box collision checks with one damage event per punch.
+- 300 health points per fighter and a 180-second match timer.
+- Health-based winner selection when time expires.
 
 ## Controls
 
-Player 1
+| Fighter | Input |
+|---|---|
+| Player 1 | Controller at joystick index 0: X axis moves, negative Y axis jumps, button 0 punches |
+| Player 2 | Keyboard: **A/D** move, **W** jumps, **J** punches |
+| Menu | Mouse selects Start Game, Instructions, or Exit |
+| During play | Escape returns to the menu |
 
-A - Move Left  
-D - Move Right  
-W - Jump  
-F - Punch  
+The current source names the fighters Rayyan and Maaz. Controller button labels vary by device. Player 1 requires a connected controller; a second keyboard mapping is not implemented.
 
-Player 2
+## Build and run
 
-Left Arrow - Move Left  
-Right Arrow - Move Right  
-Up Arrow - Jump  
-L - Punch  
+The original development environment used **SFML 2.6.1**. This code uses the SFML 2 API; SFML 3 is not interchangeable. Install a matching C++ toolchain, CMake, and SFML development package before configuring:
 
----
+```powershell
+cmake -S . -B build -DSFML_DIR="C:/path/to/SFML/lib/cmake/SFML"
+cmake --build build --config Release
+```
 
-## How to Compile
+`SFML_DIR` must point to your own installation, with compiler/architecture matching the selected generator. For a Visual Studio multi-configuration build, run from the repository root:
 
-Install SFML first.
+```powershell
+.\build\Release\pixel-punch.exe
+```
 
-Then compile:
+For a single-configuration generator, the executable is directly under `build/`. Keep the working directory at the repository root so `assets/` resolves. Windows SFML DLLs must be discoverable by the executable.
 
----
+## Technical notes and limitations
 
-## Future Improvements
+`Fighter` owns animation textures, movement state, collision regions, and health. The main loop handles menus, input, rendering, and match outcome. Movement/gravity currently advance per frame rather than using elapsed time, so gameplay speed can vary with hardware. The source permits movement after the match result appears; it is not a tournament rules implementation.
 
-- Character selection
-- Sound effects
-- Special moves
-- Menu system
+The font path is configurable; see [validation notes](docs/VALIDATION.md). Graphics, controller, and audio-free behavior are reported separately from compilation checks. No hosted demo is claimed.
 
----
+## Attribution
 
-## Author
-
-Syed Muhammad Rayyan Hasan  
-BS Software Engineering – FAST NUCES
+Personal experimental project by Syed Muhammad Rayyan Hassan. Existing image assets are retained with their history; no new redistribution license is granted. Asset provenance should be confirmed before repackaging or distributing a release.
